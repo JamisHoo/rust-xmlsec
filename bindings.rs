@@ -50,9 +50,16 @@ fn main()
 
 fn fetch_xmlsec_config_flags() -> Vec<String>
 {
-    let out = Command::new("pkg-config")
+    let bin_path = {
+        let mut p = PkgConfig::new().probe("xmlsec1").unwrap().link_paths[0].clone();
+        p.pop();
+        p.push("bin");
+        p.push("xmlsec1-config");
+        p
+    };
+
+    let out = Command::new(&bin_path)
         .arg("--cflags")
-        .arg("xmlsec1")
         .output()
         .expect("Failed to get --cflags from xmlsec1-config. Is xmlsec1 installed?")
         .stdout;
@@ -63,9 +70,16 @@ fn fetch_xmlsec_config_flags() -> Vec<String>
 
 fn fetch_xmlsec_config_libs() -> Vec<String>
 {
-    let out = Command::new("pkg-config")
+    let bin_path = {
+        let mut p = PkgConfig::new().probe("xmlsec1").unwrap().link_paths[0].clone();
+        p.pop();
+        p.push("bin");
+        p.push("xmlsec1-config");
+        p
+    };
+
+    let out = Command::new(&bin_path)
         .arg("--libs")
-        .arg("xmlsec1")
         .output()
         .expect("Failed to get --libs from xmlsec1-config. Is xmlsec1 installed?")
         .stdout;
