@@ -1,6 +1,7 @@
 //
 // xmlsec1 headers include
 //
+#define XMLSEC_NO_CRYPTO_DYNAMIC_LOADING
 #undef XMLSEC_CRYPTO_DYNAMIC_LOADING
 #define XMLSEC_CRYPTO_OPENSSL
 
