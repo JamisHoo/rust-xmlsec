@@ -50,8 +50,9 @@ fn main()
 
 fn fetch_xmlsec_config_flags() -> Vec<String>
 {
-    let out = Command::new("xmlsec1-config")
+    let out = Command::new("pkg-config")
         .arg("--cflags")
+        .arg("xmlsec1")
         .output()
         .expect("Failed to get --cflags from xmlsec1-config. Is xmlsec1 installed?")
         .stdout;
@@ -62,8 +63,9 @@ fn fetch_xmlsec_config_flags() -> Vec<String>
 
 fn fetch_xmlsec_config_libs() -> Vec<String>
 {
-    let out = Command::new("xmlsec1-config")
+    let out = Command::new("pkg-config")
         .arg("--libs")
+        .arg("xmlsec1")
         .output()
         .expect("Failed to get --libs from xmlsec1-config. Is xmlsec1 installed?")
         .stdout;
